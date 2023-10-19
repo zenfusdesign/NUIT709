@@ -49,30 +49,31 @@ $e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
 $e_reply = "You can contact $name via email, $email";
 $msg = wordwrap($e_body . $e_content . $e_reply, 70);
 
-$headers = "From: $email" . PHP_EOL;
-$headers .= "Reply-To: $email" . PHP_EOL;
-$headers .$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+$emailFrom = new \SendGrid\Mail\MailAddress($email, $name);
+$emailTo = new \SendGrid\Mail\MailAddress($address);
+$subject = $e_subject;
+$content = $e_body . $e_content . $e_reply;
 
-$emailToSend = new \SendGrid\Mail\Mail();
-$emailToSend->setFrom($email, $name);
-$emailToSend->setSubject($e_subject);
-$emailToSend->addTo($address);
-$emailToSend->addContent("text/plain", $msg);
+$email = new \SendGrid\Mail\Mail();
+$email->setFrom($emailFrom);
+$email->setSubject($subject);
+$email->addTo($emailTo);
+$email->addContent("text/plain", $content);
 
-try {
-    $response = $sendgrid->send($emailToSend);
-    if ($response->statusCode() == 202) {
-        echo "<fieldset>";
-        echo "<div id='success_page'>";
-        echo "<h3>Email Sent Successfully.</h3>";
-        echo "<p>Thank you <strong>$name</strong>, your message has been submitted to us.</p>";
-        echo "</div>";
-        echo "</fieldset>";
-    } else {
-        echo 'ERROR!';
-    }
-} catch (Exception $e) {
-    echo 'Caught exception: '. $e->getMessage() ."\n";
+// Envoyer l'e-mail
+$response = $sendgrid->send($email);
+
+if ($response->statusCode() == 202) {
+    // E-mail envoyé avec succès
+    echo "<fieldset>";
+    echo "<div id='success_page'>";
+    echo "<h3>Email Sent Successfully.</h3>";
+    echo "<p>Thank you <strong>$name</strong>, your message has been submitted to us.</p>";
+    echo "</div>";
+    echo "</fieldset>";
+} else {
+    // Erreur lors de l'envoi de l'e-mail
+    echo 'ERROR!';
 }
 
 ?>
