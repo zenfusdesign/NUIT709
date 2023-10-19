@@ -141,7 +141,12 @@
 		font-weight: 600;
 		color:#fff;
 	}
-	
+
+	#page-content #success_page {
+		color: #222;
+	}
+
+
 	.light-content .light-section b, .light-content .light-section strong {
 		font-weight: 600;
 		color:#222;
