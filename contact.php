@@ -1,7 +1,5 @@
 <?php
 
-require 'vendor/autoload.php';
-
 if(!$_POST) exit;
 
 // Email address verification, do not edit.

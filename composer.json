@@ -1,1 +1,11 @@
-{}
+{
+  "name": "nuit709",
+  "description": "nuit709 site",
+  "require": {
+    "sendgrid/sendgrid": "^7.9"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+  }
+}
