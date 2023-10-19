@@ -37,7 +37,7 @@ if(trim($name) == '') {
 }
 
 
-$apiKey = 'YOUR_SENDGRID_API_KEY'; // Remplacez par votre clé API SendGrid
+$apiKey = getenv('SENDGRID_API_KEY'); // Remplacez par votre clé API SendGrid
 $sendgrid = new \SendGrid($apiKey);
 
 $comments = htmlspecialchars($comments);
@@ -49,16 +49,11 @@ $e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
 $e_reply = "You can contact $name via email, $email";
 $msg = wordwrap($e_body . $e_content . $e_reply, 70);
 
-$emailFrom = new \SendGrid\Mail\MailAddress($email, $name);
-$emailTo = new \SendGrid\Mail\MailAddress($address);
-$subject = $e_subject;
-$content = $e_body . $e_content . $e_reply;
-
 $email = new \SendGrid\Mail\Mail();
-$email->setFrom($emailFrom);
-$email->setSubject($subject);
-$email->addTo($emailTo);
-$email->addContent("text/plain", $content);
+$email->setFrom($email, $name);
+$email->setSubject($e_subject);
+$email->addTo($address);
+$email->addContent("text/plain", $msg);
 
 // Envoyer l'e-mail
 $response = $sendgrid->send($email);
@@ -75,5 +70,6 @@ if ($response->statusCode() == 202) {
     // Erreur lors de l'envoi de l'e-mail
     echo 'ERROR!';
 }
+
 
 ?>
