@@ -1067,6 +1067,7 @@ Function Showcase Slider
 									next();
 								});	
 							}
+
 						
 						$('.swiper-slide').find('.slide-title').each(function() {
 							$(this).removeClass('active-title');							
@@ -1074,6 +1075,7 @@ Function Showcase Slider
 						
 						
 					},
+
 					slideChangeTransitionEnd: function () {
 						
 						$('body').removeClass('disable-slider-interaction');
