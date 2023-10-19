@@ -43,7 +43,7 @@ $sendgrid = new \SendGrid($apiKey);
 $comments = htmlspecialchars($comments);
 
 
-$address = "mariusduponcel@gmail.com";
+$address = "contact@nuit709.com";
 $e_subject = 'You\'ve been contacted by ' . $name . '.';
 $e_body = "You have been contacted by $name, their additional message is as follows." . PHP_EOL . PHP_EOL;
 $e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
@@ -51,7 +51,7 @@ $e_reply = "You can contact $name via email, $email";
 $msg = wordwrap($e_body . $e_content . $e_reply, 70);
 
 $email = new \SendGrid\Mail\Mail();
-$email->setFrom($email, $name);
+$email->setFrom($address, $name);
 $email->setSubject($e_subject);
 $email->addTo($address);
 $email->addContent("text/plain", $msg);
