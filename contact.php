@@ -36,6 +36,10 @@ if(trim($name) == '') {
 	exit();
 }
 
+
+$apiKey = 'YOUR_SENDGRID_API_KEY'; // Remplacez par votre clé API SendGrid
+$sendgrid = new \SendGrid($apiKey);
+
 $comments = htmlspecialchars($comments);
 
 $address = "mariusduponcel@gmail.com";
