@@ -42,6 +42,7 @@ $sendgrid = new \SendGrid($apiKey);
 
 $comments = htmlspecialchars($comments);
 
+
 $address = "mariusduponcel@gmail.com";
 $e_subject = 'You\'ve been contacted by ' . $name . '.';
 $e_body = "You have been contacted by $name, their additional message is as follows." . PHP_EOL . PHP_EOL;
