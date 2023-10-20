@@ -169,17 +169,18 @@
                         
                         
                         <!-- canvas slider -->
-                        <div id="canvas-slider" class="canvas-slider">                
+
+                        <div id="canvas-slider" class="canvas-slider">
                             <div class="slider-img" data-slide="0"><img class="slide-img" src="images/01hero.jpg" alt="" /></div>
                             <div class="slider-img" data-slide="1"><img class="slide-img" src="images/02hero.jpg" alt="" /></div>
                             <div class="slider-img" data-slide="2"><img class="slide-img" src="images/03hero.jpg" alt="" /></div>
-                            <div class="slider-img" data-slide="3"><img class="slide-img" src="images/04hero.jpg" alt="" /></div>
-                            <div class="slider-img" data-slide="4"><img class="slide-img" src="images/05hero.jpg" alt="" /></div>
+                            <div class="slider-img" data-slide="3"><img class="slide-img classic-only" src="images/04hero.jpg" alt="" /></div>
+                            <div class="slider-img" data-slide="4"><img class="slide-img mobile-only" src="images/05hero.jpg" alt="" /></div>
                             <div class="slider-img" data-slide="5"><img class="slide-img" src="images/06hero.jpg" alt="" /></div>
                             <div class="slider-img" data-slide="6"><img class="slide-img" src="images/07hero.jpg" alt="" /></div>
                             <div class="slider-img" data-slide="7"><img class="slide-img" src="images/08hero.jpg" alt="" /></div>
                         </div>
-                        <!--/canvas slider --> 
+                        <!--/canvas slider -->
                                          
                                 
                     </div>
@@ -267,7 +268,33 @@
     <script src="js/common.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        CustomFunction();
+        function CustomFunction() {
 
+            var mediaQuery = window.matchMedia("(max-width: 1024px)");
+
+            function handleMediaChange(e) {
+                var elements = document.querySelectorAll('.classic-only');
+                var elements1 = document.querySelectorAll('.mobile-only');
+                if (e.matches) {
+                    elements.forEach(function(element) {
+                        element.classList.remove('slide-img');
+
+                    });
+                } else {
+                    elements1.forEach(function(element) {
+                        element.classList.add('slide-img');
+                    });
+                }
+            }
+
+            mediaQuery.addListener(handleMediaChange);
+
+            handleMediaChange(mediaQuery);
+
+        }
+    </script>
 
 
 </body>

@@ -2181,7 +2181,7 @@ Function Portfolio
 			}
 			
 		}
-	
+
 	}//End Portfolio
 
 
