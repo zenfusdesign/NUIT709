@@ -3906,7 +3906,11 @@
 		margin: 0 auto;
 		left: 0;
 		width: 100%;
-		top: 0px;
+		bottom: 25%;
+	}
+
+	.socials-wrap {
+		display: none;
 	}
 	
 	.copyright {
