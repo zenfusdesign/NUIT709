@@ -385,7 +385,7 @@ Function Scroll Effects
 				gsap.to('#ball', {duration: 0.3,  borderWidth: '4px', scale:0.5, borderColor:'#999999', delay:0.15});
 			}
 		});
-		
+
 		//Scroll Down
 		$('.scroll-down').on('click', function() {
 			var heroheight = $("#hero").height();
@@ -398,6 +398,16 @@ Function Scroll Effects
 			}
 		});
 
+		$('.scroll-down1').on('click', function() {
+			var targetOffset = $("#ball1").offset().top;
+			if ($("body").hasClass("smooth-scroll")) {
+				gsap.to(scrollbar, {duration: 1.5, scrollTop: targetOffset, ease: Power4.easeInOut});
+				gsap.to('#ball1', {duration: 0.3, borderWidth: '4px', scale: 0.5, borderColor: '#999999', delay: 0.15});
+			} else {
+				$("html,body").animate({scrollTop: targetOffset}, 800);
+				gsap.to('#ball1', {duration: 0.3, borderWidth: '4px', scale: 0.5, borderColor: '#999999', delay: 0.15});
+			}
+		});
 
 
 		var controller = new ScrollMagic.Controller();
